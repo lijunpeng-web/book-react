@@ -3,16 +3,16 @@ import { Router, Route, Redirect } from "react-router-dom";
 import routes from "@/router";
 import history from "@/config/history";
 import "@/styles/App.css";
+import TabNav from "@/components/tabNav";
 
 // import createHistory from "history/createHashHistory";
 // import { ActivityIndicator } from "antd-mobile";
-// const tabList = [
-//   { icon: "iconfont icon-caidaniconshouyehui", name: "首页", url: "/home" },
-//   { icon: "iconfont icon-clone", name: "专题", url: "/topic" },
-//   { icon: "iconfont icon-sort", name: "分类", url: "/catelog" },
-//   { icon: "iconfont icon-cart", name: "购物车", url: "/cart" },
-//   { icon: "iconfont icon-mine", name: "我的", url: "/mine" }
-// ];
+const tabList = [
+  { icon: "iconfont icon-shouye", name: "首页", url: "/home" },
+  { icon: "iconfont icon-all", name: "书库", url: "/bookstack" },
+  { icon: "iconfont icon-shujia", name: "书架", url: "/bookshelf" },
+  { icon: "iconfont icon-wode", name: "我的", url: "/me" }
+];
 
 console.log(history);
 function RenderRouters({ routes }) {
@@ -38,6 +38,7 @@ class App extends Component {
           <Fragment>
             <Route exact path="/" render={() => <Redirect to="/home" />} />
             <RenderRouters routes={routes}></RenderRouters>
+            <TabNav tabList={tabList}></TabNav>
           </Fragment>
         </Router>
       </div>
