@@ -13,6 +13,13 @@
       "unicode_decimal": 58949
     },
     {
+      "icon_id": "578383",
+      "name": "books，书架",
+      "font_class": "books",
+      "unicode": "e603",
+      "unicode_decimal": 58883
+    },
+    {
       "icon_id": "599957",
       "name": "我的",
       "font_class": "wode",
@@ -102,13 +109,6 @@
       "font_class": "shoucang",
       "unicode": "e613",
       "unicode_decimal": 58899
-    },
-    {
-      "icon_id": "5947627",
-      "name": "书架",
-      "font_class": "shujia",
-      "unicode": "e601",
-      "unicode_decimal": 58881
     },
     {
       "icon_id": "6237086",
