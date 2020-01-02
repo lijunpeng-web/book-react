@@ -7,7 +7,8 @@
   bottom: 0;
   left: 0;
   right: 0;
-  padding: 4% 0;
+  height: 3rem;
+  border-top: 1px solid #a8a8a8;
 }
 
 .nav-link {
@@ -19,4 +20,7 @@
 }
 .nav-name {
   font-size: 0.5rem;
+}
+.bottom-nav .active {
+  color: #ed424b;
 }

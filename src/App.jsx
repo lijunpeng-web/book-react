@@ -10,7 +10,7 @@ import TabNav from "@/components/tabNav";
 const tabList = [
   { icon: "iconfont icon-shouye", name: "首页", url: "/home" },
   { icon: "iconfont icon-all", name: "书库", url: "/bookstack" },
-  { icon: "iconfont icon-shujia", name: "书架", url: "/bookshelf" },
+  { icon: "iconfont icon-books", name: "书架", url: "/bookshelf" },
   { icon: "iconfont icon-wode", name: "我的", url: "/me" }
 ];
 
