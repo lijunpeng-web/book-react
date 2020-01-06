@@ -4,18 +4,33 @@ import Search from "./components/search";
 import Swiper from "@/components/swiper";
 import TitleNav from "./components/title-nav";
 import "./index.scss";
+import { getIndexBanner } from "@/api/index";
 export default class Index extends Component {
   constructor() {
     super();
     this.state = {
       loginType: false,
-      bookType: "man"
+      bookType: "man",
+      indexBanner: []
     };
+  }
+  componentDidMount() {
+    this.getBanner();
   }
   changeType(type) {
     console.log(type);
     this.setState({
       bookType: type
+    });
+  }
+  getBanner() {
+    getIndexBanner().then(res => {
+      if (res.data.code === 0) {
+        let indexBanner = res.data.data;
+        this.setState({
+          indexBanner
+        });
+      }
     });
   }
   render() {
@@ -29,7 +44,7 @@ export default class Index extends Component {
         ></Header>
         {/*首页 banner */}
         <div className="index-swiper">
-          <Swiper></Swiper>
+          <Swiper indexBanner={this.state.indexBanner}></Swiper>
         </div>
         <TitleNav></TitleNav>
         <Search></Search>

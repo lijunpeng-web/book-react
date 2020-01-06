@@ -1,8 +1,8 @@
-import request from './axios.config'
+import request from '@/api/axiosConfig'
 
-export function getBookList(params) {
+export function getIndexBanner(params) {
   return request({
-    url: '/api/book/list',
+    url: '/api/index/banner',
     method: 'get',
     params
   })

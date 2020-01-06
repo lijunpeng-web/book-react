@@ -3,36 +3,23 @@ import { Carousel, WingBlank } from "antd-mobile";
 
 export default class Swiper extends Component {
   state = {
-    data: ["1", "2", "3"],
     imgHeight: 176
   };
-  componentDidMount() {
-    // simulate img loading
-    setTimeout(() => {
-      this.setState({
-        data: [
-          "AiyWuByWklrrUDlFignR",
-          "TekJlZRVCjLFexlOCuWn",
-          "IJOtIlfsYdTyaDTRVrLI"
-        ]
-      });
-    }, 100);
-  }
-
+  componentDidMount() {}
   render() {
     return (
       <WingBlank>
         <Carousel
           autoplay={false}
           infinite
-          beforeChange={(from, to) =>
-            console.log(`slide from ${from} to ${to}`)
-          }
+          // beforeChange={(from, to) =>
+          //   console.log(`slide from ${from} to ${to}`)
+          // }
           afterChange={index => console.log("slide to", index)}
         >
-          {this.state.data.map(val => (
+          {this.props.indexBanner.map((val, indxe) => (
             <a
-              key={val}
+              key={indxe}
               href="http://www.alipay.com"
               style={{
                 display: "inline-block",
@@ -41,11 +28,10 @@ export default class Swiper extends Component {
               }}
             >
               <img
-                src={`https://zos.alipayobjects.com/rmsportal/${val}.png`}
+                src={val.banner_img}
                 alt=""
-                style={{ width: "100%", verticalAlign: "top" }}
+                style={{ width: "100%", verticalAlign: "top", height: "140px" }}
                 onLoad={() => {
-                  // fire window resize event to change height
                   window.dispatchEvent(new Event("resize"));
                   this.setState({ imgHeight: "auto" });
                 }}
