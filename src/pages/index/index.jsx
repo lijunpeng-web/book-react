@@ -4,7 +4,9 @@ import Search from "./components/search";
 import Swiper from "@/components/swiper";
 import TitleNav from "./components/title-nav";
 import "./index.scss";
-import { getIndexBanner } from "@/api/index";
+import { getIndexBanner, getIndexBookList } from "@/api/index";
+import { getBookDetail } from "@/api/book";
+
 export default class Index extends Component {
   constructor() {
     super();
@@ -16,6 +18,8 @@ export default class Index extends Component {
   }
   componentDidMount() {
     this.getBanner();
+    this.getBook();
+    this.getDetail();
   }
   changeType(type) {
     console.log(type);
@@ -33,6 +37,15 @@ export default class Index extends Component {
       }
     });
   }
+  getBook() {
+    let data = {
+      renqun_type: "M"
+    };
+    getIndexBookList(data).then(res => {});
+  }
+  // getDetail() {
+  //   getBookDetail({ id: 1 }).then(res => {});
+  // }
   render() {
     return (
       <div className="index">

@@ -7,3 +7,10 @@ export function getIndexBanner(params) {
     params
   })
 }
+export function getIndexBookList(params) {
+  return request({
+    url: '/api/index/booklist',
+    method: 'get',
+    params
+  })
+}
