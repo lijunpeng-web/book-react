@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { getToken } from '@/utils/local'
 // 转换传参数据格式
 // axios.defaults.transformRequest = [function (data) {
 //   let newData = ''
@@ -20,7 +21,7 @@ const service = axios.create({
 
 
 service.interceptors.request.use(function (config) {
-  // config.headers['Authorization'] = getToken()
+  config.headers['Authorization'] = getToken()
   return config;
 }, function (error) {
   // 对请求错误做些什么
