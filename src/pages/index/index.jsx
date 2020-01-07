@@ -5,7 +5,8 @@ import Swiper from "@/components/swiper";
 import TitleNav from "./components/title-nav";
 import "./index.scss";
 import { getIndexBanner, getIndexBookList } from "@/api/index";
-import { getBookDetail } from "@/api/book";
+import { buyBook } from "@/api/user";
+// import { getBookDetail } from "@/api/book";
 
 export default class Index extends Component {
   constructor() {
@@ -19,7 +20,8 @@ export default class Index extends Component {
   componentDidMount() {
     this.getBanner();
     this.getBook();
-    this.getDetail();
+    // this.getDetail();
+    this.buyBookTest();
   }
   changeType(type) {
     console.log(type);
@@ -29,8 +31,8 @@ export default class Index extends Component {
   }
   getBanner() {
     getIndexBanner().then(res => {
-      if (res.data.code === 0) {
-        let indexBanner = res.data.data;
+      if (res.code === 0) {
+        let indexBanner = res.data;
         this.setState({
           indexBanner
         });
@@ -43,12 +45,22 @@ export default class Index extends Component {
     };
     getIndexBookList(data).then(res => {});
   }
+
+  buyBookTest() {
+    let data = {
+      book_id: 12
+    };
+    buyBook(data).then(res => {
+      console.log(res);
+    });
+  }
+
   // getDetail() {
   //   getBookDetail({ id: 1 }).then(res => {});
   // }
   render() {
     return (
-      <div className="index">
+      <section className="index">
         {/* 首页头部 */}
         <Header
           loginType={this.state.loginType}
@@ -61,7 +73,7 @@ export default class Index extends Component {
         </div>
         <TitleNav></TitleNav>
         <Search></Search>
-      </div>
+      </section>
     );
   }
 }

@@ -3,6 +3,7 @@ import loadableComponents from '@/components/loadableComponents'
 const Index = loadableComponents(() => import('@/pages/index'))
 const BookStack = loadableComponents(() => import('@/pages/bookStack'))
 const Me = loadableComponents(() => import('@/pages/me'))
+const Login = loadableComponents(() => import('@/pages/login'))
 const BookShelf = loadableComponents(() => import('@/pages/bookShelf'))
 
 const routes = [
@@ -29,6 +30,12 @@ const routes = [
     isTab: true,
     link: '/me',
     component: Me
+  },
+  {
+    name: '登录',
+    isTab: false,
+    link: '/login',
+    component: Login
   },
 ]
 export default routes

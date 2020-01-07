@@ -1,5 +1,6 @@
 import axios from 'axios'
-import { getToken } from '@/utils/local'
+import { Toast } from "antd-mobile";
+import { getToken, removeToken } from '@/utils/local'
 // 转换传参数据格式
 // axios.defaults.transformRequest = [function (data) {
 //   let newData = ''
@@ -21,6 +22,7 @@ const service = axios.create({
 
 
 service.interceptors.request.use(function (config) {
+  Toast.loading('加载中...', 60, null);
   config.headers['Authorization'] = getToken()
   return config;
 }, function (error) {
@@ -31,7 +33,15 @@ service.interceptors.request.use(function (config) {
 
 // 添加响应拦截器
 service.interceptors.response.use(response => {
-  return response;
+  const res = response.data
+  Toast.hide()
+  if (res.code === 401) {
+    Toast.info(res.message, 2);
+    removeToken()
+    window.location.href = "http://localhost:5000/#/login"
+    return res
+  }
+  return res;
 }, error => {
   // 对响应错误做点什么
   console.log(error.response)

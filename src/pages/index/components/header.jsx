@@ -2,7 +2,6 @@ import React, { Component } from "react";
 export default class Header extends Component {
   constructor() {
     super();
-    console.log(this.props);
   }
   changeBookType(e) {
     // console.log(e);

@@ -4,6 +4,7 @@ import '@/styles/index.css';
 import '@/icons/font-icon/iconfont.css';
 import App from './App.jsx';
 import * as serviceWorker from './serviceWorker';
+import 'antd-mobile/dist/antd-mobile.css';
 
 ReactDOM.render(<App />, document.getElementById('root'));
 
