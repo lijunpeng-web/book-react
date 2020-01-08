@@ -3,6 +3,8 @@ import Header from "./components/header";
 import Search from "./components/search";
 import Swiper from "@/components/swiper";
 import TitleNav from "./components/title-nav";
+import BookList from "./components/book-list";
+
 import "./index.scss";
 import { getIndexBanner, getIndexBookList } from "@/api/index";
 import { buyBook } from "@/api/user";
@@ -14,14 +16,14 @@ export default class Index extends Component {
     this.state = {
       loginType: false,
       bookType: "man",
-      indexBanner: []
+      indexBanner: [],
+      listData: []
     };
   }
   componentDidMount() {
     this.getBanner();
     this.getBook();
-    // this.getDetail();
-    this.buyBookTest();
+    // this.buyBookTest();
   }
   changeType(type) {
     console.log(type);
@@ -43,7 +45,13 @@ export default class Index extends Component {
     let data = {
       renqun_type: "M"
     };
-    getIndexBookList(data).then(res => {});
+    getIndexBookList(data).then(res => {
+      let listData = res.data;
+      console.log(listData);
+      this.setState({
+        listData
+      });
+    });
   }
 
   buyBookTest() {
@@ -73,6 +81,9 @@ export default class Index extends Component {
         </div>
         <TitleNav></TitleNav>
         <Search></Search>
+        {this.state.listData.map((item, index) => (
+          <BookList listData={item} key={index}></BookList>
+        ))}
       </section>
     );
   }

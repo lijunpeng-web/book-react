@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button, WingBlank } from "antd-mobile";
+import { Button } from "antd-mobile";
 import { Toast } from "antd-mobile";
 import { login, getUserInfo } from "@/api/user";
 import "./index.scss";

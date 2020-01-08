@@ -4,7 +4,9 @@ import Loadable from 'react-loadable';
 //通用的过场组件
 const loadingComponent = () => {
   return (
-    <div>loading</div>
+    <div className="component-loading">
+      <img src="https://ltpmedia-1253180657.cos.ap-guangzhou.myqcloud.com/loyalty-weapp/loading.gif" alt="" />
+    </div>
   )
 }
 

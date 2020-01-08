@@ -9,6 +9,7 @@
   right: 0;
   height: 3rem;
   border-top: 1px solid #a8a8a8;
+  background: #fff;
 }
 
 .nav-link {
@@ -19,7 +20,11 @@
   align-items: center;
 }
 .nav-name {
-  font-size: 0.5rem;
+  font-size: 0.8rem;
+}
+.tab-icon {
+  font-size: 1.2rem;
+  margin-bottom: 2%;
 }
 .bottom-nav .active {
   color: #ed424b;

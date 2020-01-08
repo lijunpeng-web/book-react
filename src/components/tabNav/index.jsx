@@ -26,7 +26,7 @@ class TabNav extends Component {
             className={pathname === item.url ? "nav-link active" : "nav-link"}
             key={index}
           >
-            <span className={item.icon}></span>
+            <span className={item.icon + " tab-icon"}></span>
             <span className="nav-name">{item.name}</span>
           </Link>
         ))}

@@ -1,10 +1,6 @@
 import React, { Component } from "react";
 import { getSearch } from "@/api/book";
 export default class Search extends Component {
-  constructor() {
-    super();
-  }
-
   componentDidMount() {
     let data = {
       title: "我的"
