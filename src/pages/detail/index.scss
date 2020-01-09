@@ -1,0 +1,21 @@
+.con1 {
+  .catalog {
+    padding: 30px 30px;
+    width: 690px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 2px solid #e2e2e2;
+    .mulu {
+      width: 20%;
+    }
+    .jian {
+      width: 30px;
+      img {
+        width: 100%;
+        transform: rotate(-90deg);
+      }
+    }
+  }
+}

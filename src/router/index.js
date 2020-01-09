@@ -5,7 +5,7 @@ const BookStack = loadableComponents(() => import('@/pages/bookStack'))
 const Me = loadableComponents(() => import('@/pages/me'))
 const Login = loadableComponents(() => import('@/pages/login'))
 const BookShelf = loadableComponents(() => import('@/pages/bookShelf'))
-
+const BookDetail = loadableComponents(() => import('@/pages/detail'))
 const routes = [
   {
     name: '首页',
@@ -36,6 +36,12 @@ const routes = [
     isTab: false,
     link: '/login',
     component: Login
+  },
+  {
+    name: '详情',
+    isTab: false,
+    link: '/detail/:id',
+    component: BookDetail
   },
 ]
 export default routes

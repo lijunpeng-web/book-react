@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
+
 export default class BookList extends Component {
   render() {
     return (
@@ -14,11 +16,11 @@ export default class BookList extends Component {
         </div>
         <div className="list">
           {this.props.listData.list.map((item, index) => (
-            <div className="list-li" key={index}>
+            <Link to={`/detail/${item.id}`} className="list-li" key={index}>
               <img src={item.images} alt="" />
               <div className="book-name">{item.bookname}</div>
               <div className="author-name">{item.author}</div>
-            </div>
+            </Link>
           ))}
         </div>
       </section>

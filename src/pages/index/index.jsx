@@ -8,7 +8,6 @@ import BookList from "./components/book-list";
 import "./index.scss";
 import { getIndexBanner, getIndexBookList } from "@/api/index";
 import { buyBook } from "@/api/user";
-// import { getBookDetail } from "@/api/book";
 
 export default class Index extends Component {
   constructor() {
@@ -63,9 +62,6 @@ export default class Index extends Component {
     });
   }
 
-  // getDetail() {
-  //   getBookDetail({ id: 1 }).then(res => {});
-  // }
   render() {
     return (
       <section className="index">
