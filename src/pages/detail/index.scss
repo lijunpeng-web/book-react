@@ -1,20 +1,156 @@
-.con1 {
-  .catalog {
-    padding: 30px 30px;
-    width: 690px;
+.detail-page {
+  background: #f6f7f9;
+  min-height: 100vh;
+  .detail-con {
+    width: 100%;
+    padding: 6% 4%;
     display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    border-top: 2px solid #e2e2e2;
-    .mulu {
-      width: 20%;
+    flex-direction: column;
+    background: -webkit-linear-gradient(to bottom, #db9b9e, #e2b766, #fff 80%);
+    background: -o-linear-gradient(to bottom, #db9b9e, #e2b766, #fff 80%);
+    background: -moz-linear-gradient(to bottom, #db9b9e, #e2b766, #fff 80%);
+    background: linear-gradient(to bottom, #db9b9e, #e2b766, #fff 80%);
+    .book-detail {
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: stretch;
+      .book-logo {
+        width: 30%;
+        display: block;
+        height: 100%;
+      }
+      .book-desc {
+        flex: 1;
+        margin-left: 4%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        .name {
+          width: 100%;
+          font-size: 1.2rem;
+        }
+        .desc {
+          width: 100%;
+          font-size: 0.8rem;
+          color: #a0a0a0;
+          .classname {
+            padding: 1% 4%;
+            border-radius: 4px;
+            font-size: 0.6rem;
+            border: 1px solid #ed424b;
+            color: #ed424b;
+          }
+          .author {
+            margin: 4% 0;
+          }
+        }
+      }
     }
-    .jian {
-      width: 30px;
-      img {
-        width: 100%;
-        transform: rotate(-90deg);
+
+    .btns {
+      width: 100%;
+      padding: 4% 0;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      .book-btn {
+        width: 30%;
+        border: 1px solid #a0a0a0;
+        height: 2rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #fff;
+        border-radius: 5px;
+      }
+      .read-btn {
+        background: #ed424b;
+        color: #fff;
+        border: 1px solid #ed424b;
+      }
+    }
+    .describe {
+      font-size: 0.8rem;
+      line-height: 1.2rem;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 3;
+      overflow: hidden;
+    }
+  }
+  .content_column {
+    width: 100%;
+    padding: 4% 2%;
+    background: #fff;
+    margin-top: 4%;
+    .title {
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      padding-bottom: 2%;
+      .heng {
+        background: #ed424b;
+        width: 2px;
+        height: 16px;
+      }
+      .text {
+        margin-left: 2%;
+      }
+    }
+    .pinlist {
+      width: 100%;
+      padding: 2%;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      border-bottom: 1px solid #e2e2e2;
+
+      .headimg {
+        width: 50px;
+        height: 50px;
+        img {
+          width: 100%;
+          height: 100%;
+          border-radius: 50%;
+          box-shadow: 0 0 30rpx #e2e2e2;
+        }
+      }
+      .pincon {
+        flex: 1;
+        margin-left: 4%;
+        display: flex;
+        flex-direction: column;
+        .pinname {
+          font-size: 0.8rem;
+        }
+        .pindate {
+          font-size: 0.8rem;
+          color: #a0a0a0;
+          margin: 2% 0;
+        }
+        .pintext {
+          font-size: 0.8rem;
+          line-height: 1.2rem;
+        }
+        .like-icon {
+          width: 100%;
+          display: flex;
+          justify-content: flex-end;
+          align-items: center;
+          .icon-zan {
+            font-size: 1.2rem;
+          }
+          .like-num {
+            font-size: 1rem;
+            font-weight: normal;
+          }
+        }
+        .like {
+          color: #ed424b;
+        }
       }
     }
   }

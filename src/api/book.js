@@ -22,3 +22,19 @@ export function getSearch(params) {
     params
   })
 }
+
+export function spotLike(params) {
+  return request({
+    url: '/api/user/commentlike',
+    method: 'post',
+    data: params
+  })
+}
+
+export function addBookshelf(params) {
+  return request({
+    url: '/api/book/addbookshelf',
+    method: 'post',
+    data: params
+  })
+}
