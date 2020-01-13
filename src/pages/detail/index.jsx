@@ -5,6 +5,7 @@ import { withRouter } from "react-router-dom";
 import moment from "moment";
 import { Toast } from "antd-mobile";
 import { TextareaItem } from "antd-mobile";
+import Header from "@/components/header";
 
 class Detail extends Component {
   constructor() {
@@ -88,6 +89,7 @@ class Detail extends Component {
   render() {
     return (
       <section className="detail-page">
+        <Header headerName="详情"></Header>
         <div className="detail-con">
           <div className="book-detail">
             <img className="book-logo" src={this.state.detail.images} alt="" />

@@ -14,21 +14,24 @@ export default class Index extends Component {
     super();
     this.state = {
       loginType: false,
-      bookType: "man",
       indexBanner: [],
-      listData: []
+      listData: [],
+      selectedIndex: 0
     };
   }
   componentDidMount() {
     this.getBanner();
-    this.getBook();
-    // this.buyBookTest();
+    this.getBook(this.state.selectedIndex);
   }
   changeType(type) {
-    console.log(type);
+    let selectedIndex = 0;
+    if (type == "女生") {
+      selectedIndex = 1;
+    }
     this.setState({
-      bookType: type
+      selectedIndex: selectedIndex
     });
+    this.getBook(selectedIndex);
   }
   getBanner() {
     getIndexBanner().then(res => {
@@ -40,15 +43,18 @@ export default class Index extends Component {
       }
     });
   }
-  getBook() {
+  getBook(selectedIndex) {
+    let type = "M";
+    if (selectedIndex === 1) {
+      type = "W";
+    }
     let data = {
-      renqun_type: "M"
+      renqun_type: type
     };
     getIndexBookList(data).then(res => {
       let listData = res.data;
-      console.log(listData);
       this.setState({
-        listData
+        listData: listData
       });
     });
   }
@@ -68,7 +74,7 @@ export default class Index extends Component {
         {/* 首页头部 */}
         <Header
           loginType={this.state.loginType}
-          bookType={this.state.bookType}
+          selectedIndex={this.state.selectedIndex}
           changeType={this.changeType.bind(this)}
         ></Header>
         {/*首页 banner */}

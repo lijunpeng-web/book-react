@@ -45,3 +45,11 @@ export function addComment(params) {
     data: params
   })
 }
+
+// export function getBookshelf(params) {
+//   return request({
+//     url: '/api/book/bookshelf',
+//     method: 'get',
+//     params
+//   })
+// }

@@ -1,0 +1,40 @@
+.book-stack {
+  width: 100%;
+  .list {
+    width: 100%;
+    padding: 4%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 10vh;
+    .list-li {
+      width: 28%;
+      margin-top: 3%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      img {
+        width: 100%;
+        transform: perspective(800px) rotateX(0deg) rotateY(-15deg) rotateZ(0);
+        border-right: 5px solid #ddd;
+        border-bottom: 3px solid #ccc;
+        box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.3);
+      }
+      .book-name {
+        width: 90%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        padding: 4% 0;
+        font-size: 0.8rem;
+      }
+      .author-name {
+        width: 90%;
+        color: #a0a0a0;
+        font-size: 0.5rem;
+      }
+    }
+  }
+}
