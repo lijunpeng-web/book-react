@@ -46,6 +46,7 @@ class Login extends Component {
         console.log(res);
         let userInfo = JSON.stringify(res.data);
         setUser(userInfo);
+        console.log(this.props.history);
         this.props.history.goBack();
       }
     });

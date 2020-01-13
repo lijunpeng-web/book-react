@@ -38,3 +38,10 @@ export function addBookshelf(params) {
     data: params
   })
 }
+export function addComment(params) {
+  return request({
+    url: '/api/book/addcomment',
+    method: 'post',
+    data: params
+  })
+}

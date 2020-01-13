@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import "./index.scss";
-import { getBookDetail, spotLike, addBookshelf } from "@/api/book";
+import { getBookDetail, spotLike, addBookshelf, addComment } from "@/api/book";
 import { withRouter } from "react-router-dom";
 import moment from "moment";
 import { Toast } from "antd-mobile";
+import { TextareaItem } from "antd-mobile";
 
 class Detail extends Component {
   constructor() {
@@ -12,7 +13,8 @@ class Detail extends Component {
       detail: {},
       content: [],
       show: false,
-      bookshelf: false
+      bookshelf: false,
+      comment: ""
     };
   }
 
@@ -34,7 +36,8 @@ class Detail extends Component {
       console.log(res);
     });
   }
-  onLike = (e, id) => {
+  onLike = (e, id, likeType) => {
+    if (likeType) return;
     console.log(e, id);
     let data = {
       comment_id: id
@@ -52,12 +55,36 @@ class Detail extends Component {
     };
     addBookshelf(data).then(res => {
       if (res.code === 0) {
-        Toast.loading("添加成功", 2, null);
+        Toast.info("添加成功", 2, null);
       } else {
         Toast.info(res.message);
       }
     });
   };
+  onComment() {
+    if (!this.state.comment.trim()) return;
+    let data = {
+      comment: this.state.comment,
+      book_id: this.state.detail.id
+    };
+    addComment(data).then(res => {
+      if (res.code === 0) {
+        console.log(res);
+        setTimeout(() => {
+          Toast.info("评论成功", 2, null);
+        }, 800);
+        this.setState({
+          comment: ""
+        });
+        this.getDetail();
+      }
+    });
+  }
+  handleTextareaChange(e) {
+    this.setState({
+      comment: e
+    });
+  }
   render() {
     return (
       <section className="detail-page">
@@ -104,13 +131,31 @@ class Detail extends Component {
                 <div className={item.likeType ? "like-icon like" : "like-icon"}>
                   <span
                     className="iconfont icon-zan"
-                    onClick={this.onLike.bind(this, index, item.comment_id)}
+                    onClick={this.onLike.bind(
+                      this,
+                      index,
+                      item.comment_id,
+                      item.likeType
+                    )}
                   ></span>
                   <span className="like-num">{item.like_number}</span>
                 </div>
               </div>
             </div>
           ))}
+        </div>
+
+        <div className="footer-comment">
+          <TextareaItem
+            className="footer-input"
+            placeholder="评论"
+            value={this.state.comment}
+            onChange={this.handleTextareaChange.bind(this)}
+            autoHeight
+          />
+          <div className="comment-btn" onClick={this.onComment.bind(this)}>
+            评论
+          </div>
         </div>
       </section>
     );

@@ -85,6 +85,7 @@
     padding: 4% 2%;
     background: #fff;
     margin-top: 4%;
+    padding-bottom: 10vh;
     .title {
       width: 100%;
       display: flex;
@@ -152,6 +153,40 @@
           color: #ed424b;
         }
       }
+    }
+  }
+  .footer-comment {
+    width: 100%;
+    padding: 2% 4%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 9;
+    background: #fff;
+    border-top: 1px solid #cecdcd;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    .footer-input {
+      padding: 0 4%;
+      width: 80%;
+      display: flex;
+      align-items: center;
+      background: #dddbdb;
+      border-radius: 2%;
+    }
+    .comment-btn {
+      width: 18%;
+      display: flex;
+      font-size: 0.8rem;
+      color: #fff;
+      background-color: #ed424b;
+      padding: 3% 0%;
+      border-radius: 5px;
+      justify-content: center;
+      align-items: center;
     }
   }
 }
