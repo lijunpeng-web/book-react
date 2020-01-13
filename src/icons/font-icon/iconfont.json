@@ -34,6 +34,13 @@
       "unicode_decimal": 58974
     },
     {
+      "icon_id": "1130515",
+      "name": "评论",
+      "font_class": "comment",
+      "unicode": "e64c",
+      "unicode_decimal": 58956
+    },
+    {
       "icon_id": "1163313",
       "name": "全部",
       "font_class": "all",
