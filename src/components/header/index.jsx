@@ -1,26 +1,32 @@
 import React, { Component } from "react";
 import { Popover, NavBar, Icon } from "antd-mobile";
 import { withRouter } from "react-router-dom";
+import "./index.scss";
 const Item = Popover.Item;
-const myImg = src => <Icon type="cross" />;
 class Header extends Component {
   state = {
     visible: false,
-    selected: ""
+    selected: "",
+    edit: false
   };
   goBack() {
     this.props.history.goBack();
   }
-
   onSelect = opt => {
-    console.log(opt);
+    let edit = false;
+    if (opt.props.value === "edit") {
+      edit = true;
+    } else {
+      edit = false;
+    }
     this.setState({
       visible: false,
-      selected: opt.props.value
+      selected: opt.props.value,
+      edit
     });
+    this.props.changeView(edit);
   };
   handleVisibleChange = visible => {
-    console.log(visible);
     this.setState({
       visible
     });
@@ -41,8 +47,19 @@ class Header extends Component {
                 overlayStyle={{ color: "currentColor" }}
                 visible={this.state.visible}
                 overlay={[
-                  <Item key="0" value="scan">
+                  <Item
+                    key="0"
+                    value="edit"
+                    className={this.state.edit ? "hide" : ""}
+                  >
                     编辑
+                  </Item>,
+                  <Item
+                    key="1"
+                    value="complete"
+                    className={this.state.edit ? "" : "hide"}
+                  >
+                    完成
                   </Item>
                 ]}
                 align={{

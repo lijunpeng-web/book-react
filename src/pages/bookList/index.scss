@@ -1,0 +1,53 @@
+.booklist-page {
+  .tab {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 4% 0;
+  }
+  .list-ul {
+    width: 100%;
+    background: #fff;
+
+    .list-li {
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      padding: 4%;
+      border-bottom: 1px solid #e2e2e2;
+      img {
+        width: 26%;
+        display: block;
+        border-radius: 5px;
+        -webkit-box-shadow: 1px 2px 3px 1px rgba(0, 0, 0, 0.2);
+        box-shadow: 1px 2px 3px 1px rgba(0, 0, 0, 0.2);
+        height: 100%;
+      }
+      .li-content {
+        margin-left: 6%;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: flex-start;
+        .book-name {
+          font-size: 1.2rem;
+        }
+        .zuozhe {
+          font-size: 0.7rem;
+          .icon-zuozhe {
+            font-size: 0.7rem;
+          }
+        }
+        .desc {
+          font-size: 0.8rem;
+          line-height: 1rem;
+          display: -webkit-box;
+          -webkit-box-orient: vertical;
+          -webkit-line-clamp: 3;
+          overflow: hidden;
+        }
+      }
+    }
+  }
+}

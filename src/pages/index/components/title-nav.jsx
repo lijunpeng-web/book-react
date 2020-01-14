@@ -9,7 +9,7 @@ export default class tabNav extends Component {
           <img src={require("@/assets/images/nav_1.png")} alt="" />
           <span>分类</span>
         </Link>
-        <Link to="/" className="tab-nav">
+        <Link to={`/booklist/${this.props.index}`} className="tab-nav">
           <img src={require("@/assets/images/nav_2.png")} alt="" />
           <span>榜单</span>
         </Link>

@@ -25,7 +25,7 @@ export default class Index extends Component {
   }
   changeType(type) {
     let selectedIndex = 0;
-    if (type == "女生") {
+    if (type === "女生") {
       selectedIndex = 1;
     }
     this.setState({
@@ -81,7 +81,7 @@ export default class Index extends Component {
         <div className="index-swiper">
           <Swiper indexBanner={this.state.indexBanner}></Swiper>
         </div>
-        <TitleNav></TitleNav>
+        <TitleNav index={this.state.selectedIndex}></TitleNav>
         <Search></Search>
         {this.state.listData.map((item, index) => (
           <BookList listData={item} key={index}></BookList>
