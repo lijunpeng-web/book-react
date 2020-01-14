@@ -62,13 +62,6 @@
       "unicode_decimal": 58947
     },
     {
-      "icon_id": "1904042",
-      "name": "头像 男孩",
-      "font_class": "icon-test",
-      "unicode": "e666",
-      "unicode_decimal": 58982
-    },
-    {
       "icon_id": "2593676",
       "name": "男",
       "font_class": "nan",
@@ -137,6 +130,13 @@
       "font_class": "jiantou1",
       "unicode": "e610",
       "unicode_decimal": 58896
+    },
+    {
+      "icon_id": "7761519",
+      "name": "删 除 ",
+      "font_class": "shanchu",
+      "unicode": "e612",
+      "unicode_decimal": 58898
     },
     {
       "icon_id": "9833351",
