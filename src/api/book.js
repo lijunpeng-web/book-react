@@ -46,10 +46,17 @@ export function addComment(params) {
   })
 }
 
-// export function getBookshelf(params) {
-//   return request({
-//     url: '/api/book/bookshelf',
-//     method: 'get',
-//     params
-//   })
-// }
+export function deleteCollection(params) {
+  return request({
+    url: '/api/book/deletecollection',
+    method: 'post',
+    data: params
+  })
+}
+export function getRanking(params) {
+  return request({
+    url: '/api/book/ranking',
+    method: 'get',
+    params
+  })
+}

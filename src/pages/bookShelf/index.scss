@@ -7,21 +7,42 @@
     flex-direction: row;
     flex-wrap: wrap;
     align-items: center;
-    justify-content: space-between;
     padding-bottom: 10vh;
     .list-li {
       width: 28%;
       margin-top: 3%;
+      margin-left: 7.8%;
       display: flex;
       flex-direction: column;
       align-items: center;
-      img {
+      .book-logo {
         width: 100%;
-        transform: perspective(800px) rotateX(0deg) rotateY(-15deg) rotateZ(0);
-        border-right: 5px solid #ddd;
-        border-bottom: 3px solid #ccc;
-        box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.3);
+        position: relative;
+        img {
+          width: 100%;
+          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+        }
+        .delete {
+          position: absolute;
+          top: 0;
+          left: 0;
+          bottom: 0;
+          right: 0;
+          margin: auto;
+          width: 15vw;
+          border-radius: 50%;
+          height: 15vw;
+          background: rgba(0, 0, 0, 0.5);
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          .icon-shanchu {
+            color: #ed424b;
+          }
+        }
       }
+
       .book-name {
         width: 90%;
         overflow: hidden;
@@ -29,12 +50,16 @@
         white-space: nowrap;
         padding: 4% 0;
         font-size: 0.8rem;
+        color: #3a3a3a;
       }
       .author-name {
         width: 90%;
         color: #a0a0a0;
         font-size: 0.5rem;
       }
+    }
+    .list-li:nth-child(3n + 1) {
+      margin-left: 0;
     }
   }
 }
