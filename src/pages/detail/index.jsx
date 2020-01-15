@@ -55,8 +55,12 @@ class Detail extends Component {
       book_id: id
     };
     addBookshelf(data).then(res => {
+      console.log(res, "-------res");
       if (res.code === 0) {
-        Toast.info("添加成功", 2, null);
+        setTimeout(() => {
+          Toast.info("添加成功", 2, null);
+        }, 800);
+        this.getDetail();
       } else {
         Toast.info(res.message);
       }

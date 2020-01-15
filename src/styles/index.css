@@ -23,22 +23,22 @@ a {
 /*正常的未被访问过的链接*/
 a:link {
   text-decoration: none;
-  color: #a8a8a8;
+  color: #3a3a3a;
 }
 /*已经访问过的链接*/
 a:visited {
   text-decoration: none;
-  color: #a8a8a8;
+  color: #3a3a3a;
 }
 /*鼠标划过(停留)的链接*/
 a:hover {
   text-decoration: none;
-  color: #a8a8a8;
+  color: #3a3a3a;
 }
 /* 正在点击的链接，鼠标在元素上按下还没有松开*/
 a:active {
   text-decoration: none;
-  color: #a8a8a8;
+  color: #3a3a3a;
 }
 /* 获得焦点的时候 鼠标松开时显示的颜色*/
 a:focus {

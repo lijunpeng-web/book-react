@@ -5,6 +5,7 @@ import Header from "@/components/header";
 import { PullToRefresh } from "antd-mobile";
 import { getRanking } from "@/api/book";
 import { Toast } from "antd-mobile";
+import { Link } from "react-router-dom";
 
 import "./index.scss";
 class BookList extends Component {
@@ -45,6 +46,7 @@ class BookList extends Component {
       if (res.code === 0) {
         let listdata = this.state.bookList;
         let list = listdata.concat(res.data.list);
+        console.log(list, "----------list");
         this.setState({
           bookList: list,
           totlePage: res.data.totalPage,
@@ -100,7 +102,7 @@ class BookList extends Component {
             onRefresh={this.onScrollStart.bind(this)}
           >
             {this.state.bookList.map((item, index) => (
-              <div className="list-li" key={index}>
+              <Link to={`/detail/${item.id}`} className="list-li" key={index}>
                 <img src={item.images} alt="" />
                 <div className="li-content">
                   <div className="book-name">{item.bookname}</div>
@@ -110,7 +112,7 @@ class BookList extends Component {
                   </div>
                   <div className="desc">{item.description}</div>
                 </div>
-              </div>
+              </Link>
             ))}
           </PullToRefresh>
           {this.state.loadingType ? "" : <div></div>}
