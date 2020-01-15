@@ -2,8 +2,10 @@ import React, { Component } from "react";
 import { SegmentedControl } from "antd-mobile";
 import { withRouter } from "react-router-dom";
 import Header from "@/components/header";
-// import { ListView } from "antd-mobile";
+import { PullToRefresh } from "antd-mobile";
 import { getRanking } from "@/api/book";
+import { Toast } from "antd-mobile";
+
 import "./index.scss";
 class BookList extends Component {
   constructor() {
@@ -13,35 +15,21 @@ class BookList extends Component {
       bookList: [],
       pageNum: 1,
       totlePage: 1,
-      pageSize: 20
+      pageSize: 20,
+      refreshing: false,
+      up: true,
+      height: document.documentElement.clientHeight - 100,
+      loadingType: false
     };
   }
   componentDidMount() {
     this.setState({
       index: parseInt(this.props.match.params.index)
     });
-    this.getBookRanking(parseInt(this.props.match.params.index));
-    let dom = document.getElementById("booklist");
-    dom.addEventListener("scroll", () => this.onScroll());
+    this.getBookRanking(parseInt(this.props.match.params.index), 1);
   }
-  onScroll() {
-    let dom = document.getElementById("booklist");
-    let scrollTop = dom.scrollTop; //滚动条卷去的高度
-    let clientHeight = dom.clientHeight; //可视区域高度
-    let scrollHeight = dom.scrollHeight; //元素总高度
-    console.log(scrollTop);
-    if (scrollTop + clientHeight + 30 >= scrollHeight) {
-      if (this.state.pageNum <= this.state.totlePage) {
-        this.getBookRanking(this.state.index);
-        let pageNum = this.state.pageNum;
-        pageNum++;
-        this.setState({
-          pageNum
-        });
-      }
-    }
-  }
-  getBookRanking(index) {
+
+  getBookRanking(index, page) {
     let type = "M";
     if (index === 0) {
       type = "M";
@@ -49,22 +37,32 @@ class BookList extends Component {
       type = "W";
     }
     let data = {
-      pageNum: this.state.pageNum,
+      pageNum: page,
       pageSize: this.state.pageSize,
       type: type
     };
     getRanking(data).then(res => {
       if (res.code === 0) {
-        let list = this.state.bookList;
-        res.data.list.forEach(item => {
-          list.push(item);
-        });
+        let listdata = this.state.bookList;
+        let list = listdata.concat(res.data.list);
         this.setState({
           bookList: list,
-          totlePage: res.data.totalPage
+          totlePage: res.data.totalPage,
+          refreshing: false
         });
       }
     });
+  }
+
+  onScrollStart() {
+    let page = this.state.pageNum;
+    if (page > this.state.totlePage) {
+      Toast.info("没有更多了~", 2);
+      return;
+    }
+    page++;
+    this.setState({ refreshing: true, pageNum: page });
+    this.getBookRanking(this.state.index, page);
   }
 
   onChange = e => {
@@ -73,7 +71,7 @@ class BookList extends Component {
       bookList: [],
       pageNum: 1
     });
-    this.getBookRanking(e.nativeEvent.selectedSegmentIndex);
+    this.getBookRanking(e.nativeEvent.selectedSegmentIndex, 1);
   };
   render() {
     return (
@@ -89,19 +87,33 @@ class BookList extends Component {
           />
         </div>
         <div className="list-ul">
-          {this.state.bookList.map((item, index) => (
-            <div className="list-li" key={index}>
-              <img src={item.images} alt="" />
-              <div className="li-content">
-                <div className="book-name">{item.bookname}</div>
-                <div className="zuozhe">
-                  <span className="iconfont icon-zuozhe"></span>
-                  <span>{item.author}</span>
+          <PullToRefresh
+            damping={200}
+            ref={el => (this.ptr = el)}
+            style={{
+              height: this.state.height,
+              overflow: "auto"
+            }}
+            indicator={this.state.up ? {} : { deactivate: "上拉可以加载更多" }}
+            direction="up"
+            refreshing={this.state.refreshing}
+            onRefresh={this.onScrollStart.bind(this)}
+          >
+            {this.state.bookList.map((item, index) => (
+              <div className="list-li" key={index}>
+                <img src={item.images} alt="" />
+                <div className="li-content">
+                  <div className="book-name">{item.bookname}</div>
+                  <div className="zuozhe">
+                    <span className="iconfont icon-zuozhe"></span>
+                    <span>{item.author}</span>
+                  </div>
+                  <div className="desc">{item.description}</div>
                 </div>
-                <div className="desc">{item.description}</div>
               </div>
-            </div>
-          ))}
+            ))}
+          </PullToRefresh>
+          {this.state.loadingType ? "" : <div></div>}
         </div>
       </section>
     );

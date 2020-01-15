@@ -8,7 +8,10 @@
   .list-ul {
     width: 100%;
     background: #fff;
-
+    .am-pull-to-refresh-up .am-pull-to-refresh-indicator {
+      margin-top: 1rem;
+      margin-bottom: 0rem;
+    }
     .list-li {
       width: 100%;
       display: flex;
