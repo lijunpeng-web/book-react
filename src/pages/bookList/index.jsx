@@ -6,6 +6,7 @@ import { PullToRefresh } from "antd-mobile";
 import { getRanking } from "@/api/book";
 import { Toast } from "antd-mobile";
 import { Link } from "react-router-dom";
+import httpUrl from "url";
 
 import "./index.scss";
 class BookList extends Component {
@@ -20,14 +21,23 @@ class BookList extends Component {
       refreshing: false,
       up: true,
       height: document.documentElement.clientHeight - 100,
-      loadingType: false
+      loadingType: false,
+      is_free: 0,
+      title: ""
     };
   }
   componentDidMount() {
+    console.log(this.props);
+    let query = httpUrl.parse(this.props.location.search, true).query;
+    let is_free = query.is_free ? query.is_free : 0;
     this.setState({
-      index: parseInt(this.props.match.params.index)
+      index: parseInt(this.props.match.params.index),
+      is_free: is_free,
+      title: query.title
     });
-    this.getBookRanking(parseInt(this.props.match.params.index), 1);
+    setTimeout(() => {
+      this.getBookRanking(parseInt(this.props.match.params.index), 1);
+    }, 200);
   }
 
   getBookRanking(index, page) {
@@ -40,7 +50,8 @@ class BookList extends Component {
     let data = {
       pageNum: page,
       pageSize: this.state.pageSize,
-      type: type
+      type: type,
+      is_free: this.state.is_free
     };
     getRanking(data).then(res => {
       if (res.code === 0) {
@@ -78,7 +89,7 @@ class BookList extends Component {
   render() {
     return (
       <section className="booklist-page" id="booklist">
-        <Header headerName="榜单" rightIcon={false}></Header>
+        <Header headerName={this.state.title} rightIcon={false}></Header>
         <div className="tab">
           <SegmentedControl
             values={["男生", "女生"]}
