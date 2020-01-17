@@ -15,7 +15,7 @@ const routes = [
     component: Index,
   },
   {
-    name: '书库',
+    name: '分类',
     isTab: true,
     link: '/bookstack',
     component: BookStack

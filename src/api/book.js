@@ -53,9 +53,17 @@ export function deleteCollection(params) {
     data: params
   })
 }
-export function getRanking(params) {
+export function getBookList(params) {
   return request({
-    url: '/api/book/ranking',
+    url: '/api/book/booklist',
+    method: 'get',
+    params
+  })
+}
+
+export function getSortType(params) {
+  return request({
+    url: '/api/book/sort',
     method: 'get',
     params
   })

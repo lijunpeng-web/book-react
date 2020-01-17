@@ -4,7 +4,6 @@ import Header from "@/components/header";
 import { Link } from "react-router-dom";
 import "./index.scss";
 import { Modal } from "antd-mobile";
-
 export default class BookShelf extends Component {
   constructor() {
     super();

@@ -18,6 +18,7 @@
       flex-direction: row;
       padding: 4%;
       border-bottom: 1px solid #e2e2e2;
+      box-sizing: border-box;
       img {
         width: 26%;
         display: block;
@@ -37,9 +38,28 @@
           font-size: 1.2rem;
         }
         .zuozhe {
+          width: 100%;
           font-size: 0.7rem;
-          .icon-zuozhe {
-            font-size: 0.7rem;
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: space-between;
+          .author {
+            width: 70%;
+            .icon-zuozhe {
+              font-size: 0.7rem;
+            }
+          }
+          .title-icon {
+            width: 20%;
+            background: #e6f7ff;
+            border-color: #91d5ff;
+            color: #1890ff;
+            padding: 2% 4%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 5px;
           }
         }
         .desc {

@@ -1,0 +1,72 @@
+.book-stack {
+  width: 100%;
+  .stack-title {
+    margin-top: 4%;
+    width: 100%;
+    padding: 4%;
+    background: #fff;
+    .title {
+      width: 100%;
+      border-bottom: 1px solid #f5f5f9;
+      padding: 2% 0%;
+      .icon-nan {
+        font-size: 1rem;
+        color: #1890ff;
+      }
+    }
+    .list {
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      .li {
+        width: 48%;
+        height: 3rem;
+        line-height: 3rem;
+        font-size: 1.2rem;
+        text-align: center;
+        margin-top: 6%;
+        background: #e6f7ff;
+        border-color: #91d5ff;
+        color: #1890ff;
+        border-radius: 10px;
+      }
+    }
+  }
+  .girl {
+    .title {
+      width: 100%;
+      border-bottom: 1px solid #f5f5f9;
+      padding: 2% 0%;
+      .icon-nv {
+        font-size: 1rem;
+        color: #e271d9;
+      }
+    }
+    .list {
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      .li {
+        width: 48%;
+        height: 3rem;
+        line-height: 3rem;
+        font-size: 1.2rem;
+        text-align: center;
+        margin-top: 6%;
+        background: #fce6ff;
+        border-color: #e271d9;
+        color: #d4a7d2;
+        border-radius: 10px;
+      }
+    }
+  }
+  .stack-sort {
+    width: 100%;
+    display: flex;
+    margin-top: 20px;
+  }
+}
