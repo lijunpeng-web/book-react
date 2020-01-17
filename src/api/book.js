@@ -68,3 +68,19 @@ export function getSortType(params) {
     params
   })
 }
+
+export function getChapter(params) {
+  return request({
+    url: '/api/book/chapter',
+    method: 'get',
+    params
+  })
+}
+
+export function getChapterList(params) {
+  return request({
+    url: '/api/book/chapterlist',
+    method: 'get',
+    params
+  })
+}

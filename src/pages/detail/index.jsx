@@ -6,6 +6,7 @@ import moment from "moment";
 import { Toast } from "antd-mobile";
 import { TextareaItem } from "antd-mobile";
 import Header from "@/components/header";
+import { Link } from "react-router-dom";
 
 class Detail extends Component {
   constructor() {
@@ -15,7 +16,8 @@ class Detail extends Component {
       content: [],
       show: false,
       bookshelf: false,
-      comment: ""
+      comment: "",
+      chapter: {}
     };
   }
 
@@ -32,7 +34,8 @@ class Detail extends Component {
       this.setState({
         detail: res.data.detail,
         content: res.data.content,
-        bookshelf: res.data.bookshelf
+        bookshelf: res.data.bookshelf,
+        chapter: res.data.chapters
       });
       console.log(res);
     });
@@ -117,6 +120,13 @@ class Detail extends Component {
           </div>
           <div className="describe">{this.state.detail.description}</div>
         </div>
+
+        <Link
+          to={`/read?chapterid=${this.state.chapter.chapter_id}&bookid=${this.state.chapter.book_id}`}
+          className="new-chapter"
+        >
+          最新章节：{this.state.chapter.chapter_name}
+        </Link>
 
         <div className="content_column">
           <div className="title">
