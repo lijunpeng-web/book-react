@@ -24,3 +24,18 @@ export function getUser() {
 export function removeUser() {
   return localStorage.removeItem('userInfo');
 }
+
+
+export function setReadSet(data) {
+  let params = JSON.stringify(data)
+  localStorage.setItem('readSet', params);
+}
+
+export function getReadSet() {
+  let params = localStorage.getItem('readSet') ? JSON.parse(localStorage.getItem('readSet')) : false
+  return params;
+}
+
+export function removeReadSet() {
+  return localStorage.removeItem('readSet');
+}
