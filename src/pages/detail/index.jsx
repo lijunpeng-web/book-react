@@ -17,7 +17,8 @@ class Detail extends Component {
       show: false,
       bookshelf: false,
       comment: "",
-      chapter: {}
+      upchapter: {},
+      firstchapter: {}
     };
   }
 
@@ -35,7 +36,8 @@ class Detail extends Component {
         detail: res.data.detail,
         content: res.data.content,
         bookshelf: res.data.bookshelf,
-        chapter: res.data.chapters
+        upchapter: res.data.chapters[0],
+        firstchapter: res.data.chapters[1]
       });
       console.log(res);
     });
@@ -109,7 +111,12 @@ class Detail extends Component {
             </div>
           </div>
           <div className="btns">
-            <div className="book-btn read-btn">开始阅读</div>
+            <Link
+              to={`/read?chapterid=${this.state.firstchapter.chapter_id}&bookid=${this.state.firstchapter.book_id}`}
+              className="book-btn read-btn"
+            >
+              开始阅读
+            </Link>
             <div
               className="book-btn"
               onClick={this.addShelf.bind(this, this.state.detail.id)}
@@ -122,11 +129,11 @@ class Detail extends Component {
         </div>
 
         <Link
-          to={`/read?chapterid=${this.state.chapter.chapter_id}&bookid=${this.state.chapter.book_id}`}
+          to={`/read?chapterid=${this.state.upchapter.chapter_id}&bookid=${this.state.upchapter.book_id}`}
           className="new-chapter"
         >
           <div className="chapter-name">
-            最新章节：{this.state.chapter.chapter_name}
+            最新章节：{this.state.upchapter.chapter_name}
           </div>
           <div className="go-chapter  iconfont icon-jiantou"></div>
         </Link>
