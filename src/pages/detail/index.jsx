@@ -125,7 +125,10 @@ class Detail extends Component {
           to={`/read?chapterid=${this.state.chapter.chapter_id}&bookid=${this.state.chapter.book_id}`}
           className="new-chapter"
         >
-          最新章节：{this.state.chapter.chapter_name}
+          <div className="chapter-name">
+            最新章节：{this.state.chapter.chapter_name}
+          </div>
+          <div className="go-chapter  iconfont icon-jiantou"></div>
         </Link>
 
         <div className="content_column">
