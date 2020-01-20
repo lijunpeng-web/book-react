@@ -177,7 +177,12 @@ class Register extends Component {
             ></input>
           </div>
 
-          <div className="input-content">
+          <div
+            style={
+              this.state.modify ? { display: "flex" } : { display: "none" }
+            }
+            className="input-content"
+          >
             <span className="iconfont icon-mima input-icon"></span>
             <input
               type="password"
