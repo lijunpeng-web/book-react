@@ -74,14 +74,12 @@ class Read extends Component {
   getChapterData(params) {
     getChapter(params).then(res => {
       if (res.code === 0) {
-        res.data.content = res.data.content.replace(/\n/g, "<br/>");
         let title = res.data.chapter_name;
         if (title.length > 14) {
           title = res.data.chapter_name.slice(0, 14) + "...";
         }
         let chapterContent = this.state.chapterContent;
         chapterContent.content += "<div style='width:100%;height:60px;'></div>";
-        chapterContent.content += `<div style="text-align: center;margin-bottom:20px">${res.data.chapter_name}</div>`;
         chapterContent.content += res.data.content;
         chapterContent.title += res.data.title;
         this.setState({
@@ -273,7 +271,7 @@ class Read extends Component {
           id="content"
           style={{ fontSize: this.state.fontSize + "px" }}
         >
-          <div>{this.state.chapterContent.chapter_name}</div>
+          {/* <div>{this.state.chapterContent.chapter_name}</div> */}
           <div
             className="read-conetne"
             dangerouslySetInnerHTML={{
