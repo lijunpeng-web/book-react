@@ -1,0 +1,41 @@
+.login-page {
+  width: 100%;
+}
+.login-form {
+  width: 80%;
+  padding-top: 8vh;
+  margin: 0 auto;
+  .input-content {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #ccc;
+    padding: 2%;
+    margin-top: 2%;
+  }
+  .icon-icon- {
+    font-size: 1.4rem;
+    margin-right: 4%;
+  }
+  .icon-mima {
+    font-size: 1.2rem;
+    margin-right: 6%;
+  }
+  .icon-qq {
+    font-size: 1.2rem;
+    margin-right: 6%;
+  }
+  .input {
+    flex: 1;
+  }
+  .btn-group {
+    margin-top: 6%;
+    .login-btn {
+      background: #ff6650;
+      margin-bottom: 4%;
+      color: #fff;
+    }
+  }
+}

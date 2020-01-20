@@ -5,6 +5,7 @@ import { login, getUserInfo } from "@/api/user";
 import "./index.scss";
 import { setToken, setUser } from "@/utils/local";
 import { withRouter } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 class Login extends Component {
   constructor() {
@@ -91,7 +92,9 @@ class Login extends Component {
             <Button className="login-btn" onClick={this.submitForm}>
               登陆
             </Button>
-            <Button>注册</Button>
+            <Link to="/register">
+              <Button>注册</Button>
+            </Link>
           </div>
         </div>
       </section>

@@ -8,6 +8,8 @@ const BookShelf = loadableComponents(() => import('@/pages/bookShelf'))
 const BookDetail = loadableComponents(() => import('@/pages/detail'))
 const BookList = loadableComponents(() => import('@/pages/bookList'))
 const Read = loadableComponents(() => import('@/pages/read'))
+const Register = loadableComponents(() => import('@/pages/register'))
+
 const routes = [
   {
     name: '首页',
@@ -56,6 +58,11 @@ const routes = [
     isTab: false,
     link: '/read',
     component: Read
+  }, {
+    name: '注册',
+    isTab: false,
+    link: '/register',
+    component: Register
   }
 
 

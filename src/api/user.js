@@ -7,6 +7,15 @@ export function login(params) {
     data: params
   })
 }
+
+export function registerUser(params) {
+  return request({
+    url: '/api/user/register',
+    method: 'post',
+    data: params
+  })
+}
+
 export function getUserInfo(params) {
   return request({
     url: '/api/user/userinfo',
