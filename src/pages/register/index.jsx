@@ -4,21 +4,32 @@ import { Button } from "antd-mobile";
 import { Toast } from "antd-mobile";
 import Header from "@/components/header";
 import { setToken, setUser } from "@/utils/local";
-import { registerUser, getUserInfo } from "@/api/user";
-
+import { registerUser, getUserInfo, modifyUserInfo } from "@/api/user";
+import httpUrl from "url";
 import "./index.scss";
 class Register extends Component {
   constructor() {
     super();
     this.state = {
-      username: "eye",
-      password: "123456",
-      confitPassword: "123456",
-      nickname: "nike",
-      qq: "408588005"
+      username: "",
+      password: "",
+      confitPassword: "",
+      nickname: "",
+      qq: "",
+      originalPassword: "",
+      modify: false,
+      title: "注册"
     };
   }
-  componentDidMount() {}
+  componentDidMount() {
+    let query = httpUrl.parse(this.props.location.search, true).query;
+    if (query.modify) {
+      this.setState({
+        modify: true,
+        title: "修改密码"
+      });
+    }
+  }
   // 用户名
   handleGetUserName = event => {
     this.setState({
@@ -43,6 +54,11 @@ class Register extends Component {
       confitPassword: event.target.value
     });
   };
+  handleGetOriginalpassword = event => {
+    this.setState({
+      originalPassword: event.target.value
+    });
+  };
   handleGetqq = event => {
     this.setState({
       qq: event.target.value
@@ -65,6 +81,23 @@ class Register extends Component {
       return false;
     } else if (!qq) {
       Toast.info("请输入qq", 2);
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  // 验证
+  verificationModify() {
+    const { password, confitPassword, originalPassword } = this.state;
+    if (!originalPassword) {
+      Toast.info("请输入目前密码", 2);
+      return false;
+    } else if (!password) {
+      Toast.info("请输入密码", 2);
+      return false;
+    } else if (confitPassword !== password) {
+      Toast.info("两次密码不一致", 2);
       return false;
     } else {
       return true;
@@ -98,23 +131,60 @@ class Register extends Component {
         let userInfo = JSON.stringify(res.data);
         setUser(userInfo);
         console.log(this.props.history);
-        this.props.history.push(`/`);
+        if (this.state.modify) {
+          this.props.history.goBack();
+        } else {
+          this.props.history.push(`/`);
+        }
       }
     });
   }
+
+  modifySubmitForm = () => {
+    const type = this.verificationModify();
+    if (!type) return;
+    const { password, originalPassword } = this.state;
+    let data = {
+      password: password,
+      originalPassword: originalPassword
+    };
+    modifyUserInfo(data).then(res => {
+      console.log(res);
+      if (res.code === 0) {
+        this.getInfo();
+      } else {
+        Toast.info(res.message, 2);
+      }
+    });
+  };
   render() {
     return (
       <section className="login-page">
-        <Header headerName="注册" rightIcon={false}></Header>
-
+        <Header headerName={this.state.title} rightIcon={false}></Header>
         <div className="login-form">
-          <div className="input-content">
+          <div
+            style={
+              this.state.modify ? { display: "none" } : { display: "flex" }
+            }
+            className="input-content"
+          >
             <span className="iconfont icon-icon- input-icon"></span>
             <input
               className="input"
               placeholder="请输入账号"
               value={this.state.username}
               onChange={this.handleGetUserName}
+            ></input>
+          </div>
+
+          <div className="input-content">
+            <span className="iconfont icon-mima input-icon"></span>
+            <input
+              type="password"
+              className="input"
+              placeholder="请输入目前密码"
+              value={this.state.originalPassword}
+              onChange={this.handleGetOriginalpassword}
             ></input>
           </div>
 
@@ -140,7 +210,12 @@ class Register extends Component {
             ></input>
           </div>
 
-          <div className="input-content">
+          <div
+            style={
+              this.state.modify ? { display: "none" } : { display: "flex" }
+            }
+            className="input-content"
+          >
             <span className="iconfont icon-icon- input-icon"></span>
             <input
               className="input"
@@ -150,7 +225,12 @@ class Register extends Component {
             ></input>
           </div>
 
-          <div className="input-content">
+          <div
+            style={
+              this.state.modify ? { display: "none" } : { display: "flex" }
+            }
+            className="input-content"
+          >
             <span className="iconfont icon-qq input-icon"></span>
             <input
               className="input"
@@ -161,8 +241,24 @@ class Register extends Component {
           </div>
 
           <div className="btn-group">
-            <Button className="login-btn" onClick={this.submitForm}>
+            <Button
+              style={
+                this.state.modify ? { display: "none" } : { display: "block" }
+              }
+              className="login-btn"
+              onClick={this.submitForm}
+            >
               注册
+            </Button>
+
+            <Button
+              style={
+                this.state.modify ? { display: "block" } : { display: "none" }
+              }
+              className="login-btn"
+              onClick={this.modifySubmitForm}
+            >
+              修改
             </Button>
           </div>
         </div>

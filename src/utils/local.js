@@ -18,7 +18,8 @@ export function setUser(data) {
 }
 
 export function getUser() {
-  return localStorage.getItem('userInfo');
+  let params = localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')) : false
+  return params;
 }
 
 export function removeUser() {

@@ -16,6 +16,15 @@ export function registerUser(params) {
   })
 }
 
+
+export function modifyUserInfo(params) {
+  return request({
+    url: '/api/user/modifyregister',
+    method: 'post',
+    data: params
+  })
+}
+
 export function getUserInfo(params) {
   return request({
     url: '/api/user/userinfo',

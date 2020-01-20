@@ -46,7 +46,7 @@ class Read extends Component {
     };
     this.getChapterData(params);
     this.getChapterListData(params);
-    let readDom = document.getElementById("read");
+    // let readDom = document.getElementById("read");
     window.addEventListener("scroll", () => {
       let scrollTop = document.body.scrollTop; //滚动条卷去的高度
       let clientHeight = document.body.clientHeight; //可视区域高度
