@@ -38,7 +38,7 @@ service.interceptors.response.use(response => {
   if (res.code === 401) {
     Toast.info(res.message, 2);
     removeToken()
-    window.location.href = "http://192.168.122.179:5000/#/login"
+    window.location.href = "http://localhost:5000/#/login"
     return res
   }
   return res;
