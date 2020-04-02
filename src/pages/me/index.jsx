@@ -1,36 +1,36 @@
-import React, { Component } from "react";
-import { getToken, getUser, removeToken } from "@/utils/local";
-import { withRouter } from "react-router-dom";
-import { Link } from "react-router-dom";
-import { Toast } from "antd-mobile";
+import React, { Component } from 'react'
+import { getToken, getUser, removeToken } from '@/utils/local'
+import { withRouter } from 'react-router-dom'
+import { Link } from 'react-router-dom'
+import { Toast } from 'antd-mobile'
 
-import "./index.scss";
+import './index.scss'
 class Me extends Component {
   constructor() {
-    super();
+    super()
     this.state = {
       userInfo: {}
-    };
+    }
   }
   componentDidMount() {
-    let token = getToken();
+    let token = getToken()
     if (!token) {
-      this.props.history.push(`/login`);
-      return;
+      this.props.history.push(`/login`)
+      return
     } else {
-      let userInfo = getUser();
+      let userInfo = getUser()
       this.setState({
         userInfo
-      });
-      console.log(userInfo);
+      })
+      console.log(userInfo)
     }
   }
   logout() {
-    removeToken();
-    Toast.info("退出成功", 2, null);
+    removeToken()
+    Toast.info('退出成功', 2, null)
     setTimeout(() => {
-      this.props.history.push(`/`);
-    }, 1000);
+      this.props.history.push(`/`)
+    }, 1000)
   }
   render() {
     return (
@@ -38,7 +38,7 @@ class Me extends Component {
         <div className="top-bg">
           <img
             className="me-bg"
-            src={require("@/assets/images/currency-me-bg.png")}
+            src={require('@/assets/images/currency-me-bg.png')}
             alt=""
           />
           <div className="userinfo">
@@ -52,42 +52,42 @@ class Me extends Component {
           <Link to="" className="nav-list borderbototm">
             <div className="title-left">
               <img
-                src={require("@/assets/images/icon-collection.png")}
+                src={require('@/assets/images/icon-collection.png')}
                 alt=""
               />
               <span>推荐</span>
             </div>
             <div className="title-right">
-              <img src={require("@/assets/images/icon-arrow.png")} alt="" />
+              <img src={require('@/assets/images/icon-arrow.png')} alt="" />
             </div>
           </Link>
           <Link to="" className="nav-list borderbototm">
             <div className="title-left">
-              <img src={require("@/assets/images/icon-follow.png")} alt="" />
+              <img src={require('@/assets/images/icon-follow.png')} alt="" />
               <span>书架</span>
             </div>
             <div className="title-right">
-              <img src={require("@/assets/images/icon-arrow.png")} alt="" />
+              <img src={require('@/assets/images/icon-arrow.png')} alt="" />
             </div>
           </Link>
           <Link to="" className="nav-list">
             <div className="title-left">
-              <img src={require("@/assets/images/icon-help.png")} alt="" />
+              <img src={require('@/assets/images/icon-help.png')} alt="" />
               <span>帮助</span>
             </div>
             <div className="title-right">
-              <img src={require("@/assets/images/icon-arrow.png")} alt="" />
+              <img src={require('@/assets/images/icon-arrow.png')} alt="" />
             </div>
           </Link>
         </div>
-        <Link to="/register?modify=1" class="logout-btn user">
+        <Link to="/register?modify=1" className="logout-btn user">
           修改密码
         </Link>
-        <div class="logout-btn" onClick={e => this.logout()}>
+        <div className="logout-btn" onClick={e => this.logout()}>
           退出登陆
         </div>
       </div>
-    );
+    )
   }
 }
-export default withRouter(Me);
+export default withRouter(Me)
