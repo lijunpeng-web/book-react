@@ -1,36 +1,41 @@
-import React, { Component } from "react";
-import "./index.scss";
-import { getBookDetail, spotLike, addBookshelf, addComment } from "@/api/book";
-import { withRouter } from "react-router-dom";
-import moment from "moment";
-import { Toast } from "antd-mobile";
-import { TextareaItem } from "antd-mobile";
-import Header from "@/components/header";
-import { Link } from "react-router-dom";
+import React, { Component } from 'react'
+import './index.scss'
+import { getBookDetail, spotLike, addBookshelf, addComment } from '@/api/book'
+import { withRouter } from 'react-router-dom'
+import moment from 'moment'
+import { Toast } from 'antd-mobile'
+import { TextareaItem } from 'antd-mobile'
+import Header from '@/components/header'
+import { Link } from 'react-router-dom'
 
 class Detail extends Component {
   constructor() {
-    super();
+    super()
     this.state = {
       detail: {},
       content: [],
       show: false,
       bookshelf: false,
-      comment: "",
+      comment: '',
       upchapter: {},
       firstchapter: {}
-    };
+    }
   }
 
   componentDidMount() {
-    console.log(this.props.match.params.id);
-    this.getDetail();
+    console.log(this.props.match.params.id)
+    let token = localStorage.getItem('token')
+    if (token) {
+      this.getDetail()
+    } else {
+      window.location.href = 'http://192.168.122.230:5000/#/login'
+    }
   }
 
   getDetail() {
     let data = {
       id: this.props.match.params.id
-    };
+    }
     getBookDetail(data).then(res => {
       this.setState({
         detail: res.data.detail,
@@ -38,62 +43,64 @@ class Detail extends Component {
         bookshelf: res.data.bookshelf,
         upchapter: res.data.chapters[0],
         firstchapter: res.data.chapters[1]
-      });
-      console.log(res);
-    });
+      })
+      console.log(res)
+    })
   }
   onLike = (e, id, likeType) => {
-    if (likeType) return;
-    console.log(e, id);
+    if (likeType) return
+    console.log(e, id)
     let data = {
-      comment_id: id
-    };
+      comment_id: id,
+      book_id: this.props.match.params.id
+    }
+    console.log(data)
     spotLike(data).then(res => {
       if (res.code === 0) {
-        this.getDetail();
+        this.getDetail()
       }
-    });
-  };
+    })
+  }
   addShelf = id => {
-    if (this.state.bookshelf) return;
+    if (this.state.bookshelf) return
     let data = {
       book_id: id
-    };
+    }
     addBookshelf(data).then(res => {
-      console.log(res, "-------res");
+      console.log(res, '-------res')
       if (res.code === 0) {
         setTimeout(() => {
-          Toast.info("添加成功", 2, null);
-        }, 800);
-        this.getDetail();
+          Toast.info('添加成功', 2, null)
+        }, 800)
+        this.getDetail()
       } else {
-        Toast.info(res.message);
+        Toast.info(res.message)
       }
-    });
-  };
+    })
+  }
   onComment() {
-    if (!this.state.comment.trim()) return;
+    if (!this.state.comment.trim()) return
     let data = {
       comment: this.state.comment,
       book_id: this.state.detail.id
-    };
+    }
     addComment(data).then(res => {
       if (res.code === 0) {
-        console.log(res);
+        console.log(res)
         setTimeout(() => {
-          Toast.info("评论成功", 2, null);
-        }, 800);
+          Toast.info('评论成功', 2, null)
+        }, 800)
         this.setState({
-          comment: ""
-        });
-        this.getDetail();
+          comment: ''
+        })
+        this.getDetail()
       }
-    });
+    })
   }
   handleTextareaChange(e) {
     this.setState({
       comment: e
-    });
+    })
   }
   render() {
     return (
@@ -121,7 +128,7 @@ class Detail extends Component {
               className="book-btn"
               onClick={this.addShelf.bind(this, this.state.detail.id)}
             >
-              {this.state.bookshelf ? "已加入书架" : "加入书架"}
+              {this.state.bookshelf ? '已加入书架' : '加入书架'}
             </div>
             <div className="book-btn">VIP订阅</div>
           </div>
@@ -151,10 +158,10 @@ class Detail extends Component {
               <div className="pincon">
                 <div className="pinname">{item.nick_name}</div>
                 <div className="pindate">
-                  {moment(item.createtime).format("YYYY-MM-DD hh:mm:ss")}
+                  {moment(item.createtime).format('YYYY-MM-DD hh:mm:ss')}
                 </div>
                 <div className="pintext">{item.content}</div>
-                <div className={item.likeType ? "like-icon like" : "like-icon"}>
+                <div className={item.likeType ? 'like-icon like' : 'like-icon'}>
                   <span
                     className="iconfont icon-zan"
                     onClick={this.onLike.bind(
@@ -184,7 +191,7 @@ class Detail extends Component {
           </div>
         </div>
       </section>
-    );
+    )
   }
 }
-export default withRouter(Detail);
+export default withRouter(Detail)
